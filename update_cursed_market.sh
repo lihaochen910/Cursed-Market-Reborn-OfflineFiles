@@ -1,6 +1,20 @@
 #!/bin/bash
 
 cd ~/GitWorkspace/Cursed-Market-Reborn-OfflineFiles
+
+# hearbeat test
+url_heartbeat='https://cursed.cranchpalace.info/DaylightGame/heartBeat'
+
+hearbeat_response="$(curl -X GET $url_heartbeat)"
+if [[ "$hearbeat_response" == 'OK' ]]; then
+	echo 'HeartBeat ok.'
+else
+	echo 'HeartBeat failed.'
+	echo 'Service Return:'$hearbeat_response
+	echo 'check' $url_heartbeat
+	exit -1
+fi
+
 curl -O "https://cursed.cranchpalace.info/DaylightGame/files/{market,marketDlc,dbdCharacterData,singleDbdCharacterData,dbdItemsList,catalog,killSwitch}.json"
 
 current_time="$(date '+%Y-%m-%d %H:%M:%S')"
