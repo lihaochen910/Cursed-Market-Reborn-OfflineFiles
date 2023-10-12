@@ -11,8 +11,8 @@ if [ -n "$(git status -s)" ]; then
 	echo " detect file changed."
 
 	git add --all
-	git commit -m $current_time
-	git push origin master
+	git commit -m "$current_time"
+	git push origin main
 
 else
 	echo "no change, pass."
